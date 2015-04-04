@@ -3,6 +3,7 @@ Buildroot based hardened firewall
 (Utilizes the Buildroot br2_external concept to define a target configuration/customization out of tree)
 
 Features
+------------------------------------------------------
 + Utilizing the latest Linux Kernel NF tables filewall capability
 + Bleeding edge package revisions for minimal CVE exposure
 + SELinux policy hardened
@@ -18,15 +19,11 @@ Features
 Build Setup
 ------------------------------------------------------
 cd ~/
-- Retrieve tip of Buildroot
-git clone http://git.buildroot.net/git/buildroot.git
-- Retreive target custom files
-git clone https://github.com/matthew-l-weber/flexwall.git
-- Setup configuration for build
-cd ~/buildroot
+git clone http://git.buildroot.net/git/buildroot.git              # Retrieve tip of Buildroot
+git clone https://github.com/matthew-l-weber/flexwall.git         # Retreive target custom files
+cd ~/buildroot                                                    # Setup configuration for build
 make BR2_EXTERNAL=~/flexwall O=~/t_flexwall x86_flexwall_defconfig
-- Do initial build
-cd ~/t_flexwall
+cd ~/t_flexwall                                                   # Do initial build
 make
 
 Install
@@ -37,4 +34,5 @@ Install
   +  Windows - http://sourceforge.net/projects/win32diskimager/
 
 Testing with QEMU (assuming within target build folder)
+------------------------------------------------------
 qemu-system-i386 -M pc -kernel images/bzImage -drive file=images/rootfs.ext2,if=ide -append "console=ttyS0 root=/dev/sda" -net nic,model=rtl8139 -net nic,model=rtl8139 -net user -nographic
