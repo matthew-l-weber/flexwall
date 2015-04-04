@@ -17,19 +17,20 @@ Features
 
 Build Setup
 ------------------------------------------------------
- cd ~/
- # Retrieve tip of Buildroot
- git clone http://git.buildroot.net/git/buildroot.git
- # Retreive target custom files
- git clone https://github.com/matthew-l-weber/flexwall.git
- # Setup configuration for build
- cd ~/buildroot
- make BR2_EXTERNAL=~/flexwall O=~/t_flexwall x86_flexwall_defconfig
- # Do initial build
- cd ~/t_flexwall
- make
+cd ~/
+- Retrieve tip of Buildroot
+git clone http://git.buildroot.net/git/buildroot.git
+- Retreive target custom files
+git clone https://github.com/matthew-l-weber/flexwall.git
+- Setup configuration for build
+cd ~/buildroot
+make BR2_EXTERNAL=~/flexwall O=~/t_flexwall x86_flexwall_defconfig
+- Do initial build
+cd ~/t_flexwall
+make
 
 Install
+------------------------------------------------------
 + Output images located in ~/t_flexwall/images/
 + Use ??? as the binary to load to a media (USB/Harddisk)
   +  Linux - dd if=images/???.bin of=/dev/<disk> conv=fdatasync
