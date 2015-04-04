@@ -9,6 +9,7 @@ Features
 + Snort IDS monitoring
 + Squid web acceleration
 + Caching DNS server / DHCP server
++ NTP server
 + DDNS client (initially just dnsexit)
 + No authenticated user access or interactive shell
 + Multi-OS setup approach with diskimager loading image binaries to media, then FAT32 media partition mounted to place configuration file.
