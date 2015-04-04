@@ -1,6 +1,5 @@
 # flexwall
-Buildroot based hardened firewall
-(Utilizes the Buildroot br2_external concept to define a target configuration/customization out of tree)
+Buildroot based hardened firewall - (Utilizes the Buildroot br2_external concept to define a target configuration/customization out of tree)
 
 Features
 ------------------------------------------------------
@@ -18,13 +17,13 @@ Features
 
 Build Setup
 ------------------------------------------------------
-cd ~/
-git clone http://git.buildroot.net/git/buildroot.git              # Retrieve tip of Buildroot
-git clone https://github.com/matthew-l-weber/flexwall.git         # Retreive target custom files
-cd ~/buildroot                                                    # Setup configuration for build
-make BR2_EXTERNAL=~/flexwall O=~/t_flexwall x86_flexwall_defconfig
-cd ~/t_flexwall                                                   # Do initial build
-make
+cd ~/<br>
+git clone http://git.buildroot.net/git/buildroot.git              # Retrieve tip of Buildroot<br>
+git clone https://github.com/matthew-l-weber/flexwall.git         # Retreive target custom files<br>
+cd ~/buildroot                                                    # Setup configuration for build<br>
+make BR2_EXTERNAL=~/flexwall O=~/t_flexwall x86_flexwall_defconfig<br>
+cd ~/t_flexwall                                                   # Do initial build<br>
+make<br>
 
 Install
 ------------------------------------------------------
@@ -33,6 +32,7 @@ Install
   +  Linux - dd if=images/???.bin of=/dev/<disk> conv=fdatasync
   +  Windows - http://sourceforge.net/projects/win32diskimager/
 
-Testing with QEMU (assuming within target build folder)
+Testing with QEMU 
 ------------------------------------------------------
+(assuming within target build folder)<br><br>
 qemu-system-i386 -M pc -kernel images/bzImage -drive file=images/rootfs.ext2,if=ide -append "console=ttyS0 root=/dev/sda" -net nic,model=rtl8139 -net nic,model=rtl8139 -net user -nographic
