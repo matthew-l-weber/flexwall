@@ -5,7 +5,7 @@ Features
 ------------------------------------------------------
 + Utilizing the latest Linux Kernel NF tables filewall capability
 + Bleeding edge package revisions for minimal CVE exposure
-+ SELinux policy hardened
++ (Maybe, depends on filesystem type and possibly different approach with IMA arch) SELinux policy hardened
 + Snort IDS monitoring
 + Squid web acceleration
 + Caching DNS server / DHCP server
