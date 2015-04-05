@@ -35,10 +35,14 @@ Install
 Testing with QEMU 
 ------------------------------------------------------
 (assuming within target build folder)<br><br>
-qemu-system-i386 -M pc -kernel images/bzImage -drive file=images/rootfs.ext2,if=ide -append "console=ttyS0 root=/dev/sda" -net nic,model=rtl8139 -net nic,model=rtl8139 -net user -nographic
++ cp images/rootfs.ext2 images/rootfs_fw.ext2
++ qemu-system-i386 -M pc -kernel images/bzImage -drive file=images/rootfs_fw.ext2,if=ide -append "console=ttyS0 root=/dev/sda ip=10.10.10.1::255.255.255.0:flexwall:eth1:::" -net nic,model=rtl8139,vlan=1,macaddr=52:55:01:4e:79:18 -net user,vlan=1 -net nic,model=rtl8139,vlan=2,macaddr=52:55:01:4e:79:19 -net socket,vlan=2,listen=:1234  -nographic
 
 Second qemu instance to act as a LAN device
-+ Setup qemu bridging (http://toast.djw.org.uk/qemu.html)
-+ 
++ Start second instance (using qemu socket networking to connect to firewall, https://people.gnome.org/~markmc/qemu-networking.html)
+  + cp images/rootfs.ext2 images/rootfs_lan.ext2
+  + qemu-system-i386 -M pc -kernel images/bzImage -drive file=images/rootfs_lan.ext2,if=ide -append "console=ttyS0 root=/dev/sda ip=::::fwclient:eth0:dhcp::" -net nic,model=rtl8139,vlan=2,macaddr=52:55:01:4e:79:28 -net socket,vlan=2,connect=127.0.0.1:1234   -nographic
 
+For reference......  bootargs ip config....
+ip=<client-ip>:<server-ip>:<gw-ip>:<netmask>:<hostname>:<device>:<autoconf>:<dns0-ip>:<dns1-ip>
 
