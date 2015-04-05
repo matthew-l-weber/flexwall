@@ -36,3 +36,9 @@ Testing with QEMU
 ------------------------------------------------------
 (assuming within target build folder)<br><br>
 qemu-system-i386 -M pc -kernel images/bzImage -drive file=images/rootfs.ext2,if=ide -append "console=ttyS0 root=/dev/sda" -net nic,model=rtl8139 -net nic,model=rtl8139 -net user -nographic
+
+Second qemu instance to act as a LAN device
++ Setup qemu bridging (http://toast.djw.org.uk/qemu.html)
++ 
+
+
