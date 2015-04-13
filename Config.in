@@ -1,0 +1,2 @@
+#source "$BR2_EXTERNAL/package/package2/Config.in"
+

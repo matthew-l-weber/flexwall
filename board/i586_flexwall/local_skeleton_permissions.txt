@@ -1,0 +1,12 @@
+# See package/makedevs/README for details
+#
+# This device table is used to assign proper ownership and permissions
+# on various files. It doesn't create any device file, as it is used
+# in both static device configurations (where /dev/ is static) and in
+# dynamic configurations (where devtmpfs, mdev or udev are used).
+#
+# <name>				<type>	<mode>	<uid>	<gid>	<major>	<minor>	<start>	<inc>	<count>
+/etc/dnsmasq.conf			f	644	0	0	-	-	-	-	-
+/etc/sysctl.conf			f	644	0	0	-	-	-	-	-
+/etc/init.d/S00sysctl			f	755	0	0	-	-	-	-	-
+/etc/init.d/S38nf_tables		f	755	0	0	-	-	-	-	-
