@@ -3,17 +3,17 @@ Buildroot based hardened firewall - (Utilizes the Buildroot br2_external concept
 
 Features
 ------------------------------------------------------
-+ Utilizing the latest Linux Kernel NF tables filewall capability
-+ Bleeding edge package revisions for minimal CVE exposure
++ (Complete) Utilizing the latest Linux Kernel NF tables filewall capability
++ (Complete) Bleeding edge package revisions for minimal CVE exposure
 + (Maybe, depends on filesystem type and possibly different approach with IMA arch) SELinux policy hardened
-+ Snort IDS monitoring
-+ Squid web acceleration
-+ Caching DNS server / DHCP server
-+ NTP server
-+ DDNS client (initially just dnsexit)
-+ No authenticated user access or interactive shell
-+ Multi-OS setup approach with diskimager loading image binaries to media, then FAT32 media partition mounted to place configuration file.
-+ Configurable through a text file placed in a FAT32 partition at USB stick/harddrive images time.  Otherwise not runtime configurable or modifyable
++ (Future) Snort IDS monitoring
++ (Future) Squid web acceleration
++ (Complete) Caching DNS server / DHCP server
++ (Pending) NTP server
++ (Future) DDNS client (initially just dnsexit)
++ (Pending) No authenticated user access or interactive shell
++ (Pending) Multi-OS setup approach with diskimager loading image binaries to media, then FAT32 media partition mounted to place configuration file.
++ (Future) Configurable through a text file placed in a FAT32 partition at USB stick/harddrive images time.  Otherwise not runtime configurable or modifyable
 
 Build Setup
 ------------------------------------------------------
