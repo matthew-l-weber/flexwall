@@ -1,5 +1,14 @@
 #! /bin/sh
 
+FLEXWALL_HOSTNAME=flexwall
+#TODO WAN IP config
+FLEXWALL_LAN0_IP=10.10.10.1
+FLEXWALL_LAN0_MASK=255.255.255.0
+FLEXWALL_LAN0_NET=10.10.10.0/24
+DNSMASQ_DHCP_RANGE=10.10.10.50,10.10.10.100,72h
+DNSMASQ_DHCP_ROUTER=$FLEXWALL_LAN0_IP
+DNSMASQ_DHCP_NTP=$FLEXWALL_LAN0_IP
+
 NAME=sysctl
 DAEMON=/sbin/$NAME
 
@@ -11,6 +20,22 @@ case "$1" in
     echo -n "Starting $NAME: "
     $DAEMON -p
     [ $? = 0 ] && echo "OK" || echo "FAIL"
+
+
+    echo $FLEXWALL_HOSTNAME > /etc/hostname
+
+    echo >> /etc/network/interfaces
+    echo "auto eth1" >> /etc/network/interfaces
+    echo "iface eth1 inet static" >> /etc/network/interfaces
+    echo "   address $FLEXWALL_LAN0_IP" >> /etc/network/interfaces
+    echo "   netmask $FLEXWALL_LAN0_MASK" >> /etc/network/interfaces
+
+    echo "dhcp-range=$DNSMASQ_DHCP_RANGE"                  >> /etc/dnsmasq.conf
+    echo "dhcp-option=option:router,$DNSMASQ_DHCP_ROUTER"  >> /etc/dnsmasq.conf
+    echo "dhcp-option=option:ntp-server,$DNSMASQ_DHCP_NTP" >> /etc/dnsmasq.conf
+
+    sed -i "s~flexwall_lan_net~$FLEXWALL_LAN0_NET~g" /etc/nftables.ruleset
+
     ;;
   stop)
     echo  "Stopping $NAME: NA"
