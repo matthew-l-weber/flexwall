@@ -14,6 +14,7 @@ Features
 + (Pending) No authenticated user access or interactive shell
 + (Pending) Multi-OS setup approach with diskimager loading image binaries to media, then FAT32 media partition mounted to place configuration file.
 + (Future) Configurable through a text file placed in a FAT32 partition at USB stick/harddrive images time.  Otherwise not runtime configurable or modifyable
++ (Future) Investigate having standalone configuration for a webcam server, plus a gateway/firewall config w/webcam option using fswebcam + a webserver. 
 
 Build Setup
 ------------------------------------------------------
