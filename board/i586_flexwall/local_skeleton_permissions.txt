@@ -10,3 +10,4 @@
 /etc/sysctl.conf			f	644	0	0	-	-	-	-	-
 /etc/init.d/S00sysctl			f	755	0	0	-	-	-	-	-
 /etc/init.d/S38nf_tables		f	755	0	0	-	-	-	-	-
+/extlinux.conf				f	644	0	0	-	-	-	-	-
