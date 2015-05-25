@@ -29,6 +29,15 @@ case "$1" in
     mkdir /tmp/etc.rw || err "mkdir of etc.rw"
     mount -t unionfs -o dirs=/tmp/etc.rw=rw:/etc=ro unionfs /etc || err "unionfs mount of etc.rw"
 
+    # DEBUG QEMU client
+    if [ ! -z "$(grep fwclient /proc/cmdline)" ]; then
+        echo "auto eth0"			>> /etc/network/interfaces
+        echo "iface eth0 inet dhcp"	>> /etc/network/interfaces
+        rm -f  /etc/nftables.ruleset   # disable firewall
+        echo "Client: OK"
+        exit 0
+    fi
+
     echo .
     echo " HOSTNAME [$FLEXWALL_HOSTNAME]"
     echo " WAN MAC  [$FLEXWALL_WAN_MAC]"
