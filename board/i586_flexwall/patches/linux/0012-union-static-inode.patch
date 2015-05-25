@@ -1,0 +1,22 @@
+Index: linux-4.0.1/fs/unionfs/inode.c
+===================================================================
+--- linux-4.0.1.orig/fs/unionfs/inode.c	2015-05-25 07:52:31.610425476 -0500
++++ linux-4.0.1/fs/unionfs/inode.c	2015-05-25 07:52:51.520374736 -0500
+@@ -733,7 +733,7 @@
+  * This is a variant of fs/namei.c:permission() or inode_permission() which
+  * skips over EROFS tests (because we perform copyup on EROFS).
+  */
+-static int __inode_permission(struct inode *inode, int mask)
++static int __u_inode_permission(struct inode *inode, int mask)
+ {
+ 	int retval;
+ 
+@@ -826,7 +826,7 @@
+ 		 * copyup taking place later on.  However, if user never had
+ 		 * access to the file, then no copyup could ever take place.
+ 		 */
+-		err = __inode_permission(lower_inode, mask);
++		err = __u_inode_permission(lower_inode, mask);
+ 		if (err && err != -EACCES && err != EPERM && bindex > 0) {
+ 			umode_t mode = lower_inode->i_mode;
+ 			if ((is_robranch_super(inode->i_sb, bindex) ||
