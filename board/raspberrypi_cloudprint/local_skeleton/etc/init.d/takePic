@@ -1,0 +1,8 @@
+#!/bin/sh
+
+while [ 1 ]; do
+   fswebcam -d /dev/video0  --timestamp "%Y-%m-%d %H:%M (%Z)" --greyscale /tmp/takePic.jpg
+   chmod 777 /tmp/takePic.jpg
+   scp -i /root/.ssh/id_rsa /tmp/takePic.jpg mlweber@172.16.2.200:/mnt/nas_media/piCam/$(date +%Y%m%dT%H%M%S).jpg
+   sleep 15
+done

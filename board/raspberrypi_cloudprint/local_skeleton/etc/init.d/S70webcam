@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/etc/init.d/takePic > /tmp/takePic  2>&1 &
