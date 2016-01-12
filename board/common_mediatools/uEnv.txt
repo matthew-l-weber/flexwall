@@ -1,0 +1,2 @@
+mmcrootfstype=ext4 rootwait
+uenvcmd=run loaduimagefat; run mmcargs; bootm ${loadaddr}
