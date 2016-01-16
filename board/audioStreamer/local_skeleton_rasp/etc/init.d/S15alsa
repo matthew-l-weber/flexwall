@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# restore saved state
+/usr/sbin/alsactl restore -f /etc/asound.state &

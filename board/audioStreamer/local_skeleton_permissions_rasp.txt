@@ -1,0 +1,10 @@
+# See package/makedevs/README for details
+#
+# <name>				<type>	<mode>	<uid>	<gid>	<major>	<minor>	<start>	<inc>	<count>
+/etc/asound.state			f	644	0	0	-	-	-	-	-
+/etc/init.d/S15alsa			f	755	0	0	-	-	-	-	-
+/etc/init.d/S45wpa_supplicant		f	755	0	0	-	-	-	-	-
+/etc/init.d/S80stream			f	755	0	0	-	-	-	-	-
+/etc/network/interfaces			f	644	0	0	-	-	-	-	-
+/etc/wpa_supplicant/home.conf		f	644	0	0	-	-	-	-	-
+/root/.profile				f	600	0	0	-	-	-	-	-
