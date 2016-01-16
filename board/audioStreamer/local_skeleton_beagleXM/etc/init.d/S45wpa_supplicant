@@ -1,0 +1,18 @@
+#! /bin/sh
+
+
+case "$1" in
+	start|"")
+		/usr/sbin/wpa_supplicant -B -i wlan0 -D wext -c /etc/wpa_supplicant/home.conf
+		sleep 2
+		/sbin/udhcpc -i wlan0
+		ntpdate 0.ubuntu.pool.ntp.org
+		;;
+	stop)
+		killall wpa_supplicant
+		;;
+	*)
+		echo "Usage: wpa_supplicant {start|stop}" >&2
+		exit 1
+		;;
+esac
