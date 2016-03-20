@@ -1,0 +1,6 @@
+ramroot=/dev/ram0 rw init=/init
+ramrootfstype=ramfs
+uenvcmd=run loaduimagefat; run loadramdisk; run ramargs; bootm ${loadaddr} ${rdaddr}
+
+#run loadramdisk; run loaduimagefat; setenv ramrootfstype ramfs; setenv ramroot '/dev/ram0 rw init=/init'; run ramargs; bootm ${loadaddr} ${rdaddr}
+
