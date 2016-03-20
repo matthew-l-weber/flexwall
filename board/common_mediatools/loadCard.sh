@@ -34,11 +34,21 @@ rm /mnt/sdcard1/*.dtb
 cp *.dtb             /mnt/sdcard1/
 [ ! -e "uEnv.txt" ] && rm -f /mnt/sdcard1/uEnv.txt
 cp uEnv.txt          /mnt/sdcard1
+[ -e "rootfs.cpio.uboot" ] && cp rootfs.cpio.uboot /mnt/sdcard1/ramdisk.gz
 sync
 umount ${DRIVE}1
 [ -d "/mnt/sdcard1" ] && rm -fr /mnt/sdcard1
 
 mount ${DRIVE}2 /mnt/sdcard2
+if [ -e "rootfs.cpio.uboot" ]; then
+	rm /mnt/sdcard2/* -rf
+	sync
+	umount ${DRIVE}2
+	[ -d "/mnt/sdcard2" ] && rm -fr /mnt/sdcard2
+	echo "Skipped rootfs partition as cpio is used..."
+	exit 0
+fi
+
 [ -d "${myPWD}/tmp" ] && rm -rf tmp
 mkdir tmp
 tar xf ${myPWD}/rootfs.ta* -C ${myPWD}/tmp/
