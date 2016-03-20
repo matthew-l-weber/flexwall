@@ -1,0 +1,14 @@
+#! /bin/sh
+
+
+case "$1" in
+	start|"")
+		ntpdate 0.ubuntu.pool.ntp.org
+		;;
+	stop)
+		;;
+	*)
+		echo "Usage: S70ntp {start|stop}" >&2
+		exit 1
+		;;
+esac
