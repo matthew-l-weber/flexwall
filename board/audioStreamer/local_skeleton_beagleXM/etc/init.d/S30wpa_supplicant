@@ -1,8 +1,11 @@
 #! /bin/sh
 
+echo "Sleeping for USB to apprear..."
+sleep 10
 
 case "$1" in
 	start|"")
+		echo "Starting wpa_supplicant..."
 		/usr/sbin/wpa_supplicant -B -i wlan0 -D wext -c /etc/wpa_supplicant/home.conf
 		;;
 	stop)
