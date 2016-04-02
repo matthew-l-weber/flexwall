@@ -1,3 +1,14 @@
+
+
+# audio streamer
+
+A beagleboard encoder/src that takes in an audio stream and a raspberrypi as the destination that outputs the stream to an audio amp/headphones.  At power on the devices work independently and consume/output streams.  Both sync to ntp time and require custom wpa_supplicant config that's checked in as a placeholder home.conf which requires customization.
+
+Buildsystem version used against this br2_external
+- Used buildroot commit d2c8d0efbfea1fc5d482a89b8108217de4105d61 plus 112b22d7062ed8d971418cc5ef5544744d30615e which adds support for MediaTek wifi.
+
+
+
 # flexwall
 Buildroot based hardened firewall - (Utilizes the Buildroot br2_external concept to define a target configuration/customization out of tree)
 
