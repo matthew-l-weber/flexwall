@@ -1,0 +1,37 @@
+#! /bin/sh
+
+NAME=ntpdate
+DAEMON=/usr/bin/ntpdate
+
+err()
+{
+	echo "$1"
+	exit 1
+}
+
+
+
+case "$1" in
+  start)
+    echo -n "Starting $NAME: "
+    /etc/init.d/S49ntp stop
+    $DAEMON 0.pool.ntp.org > /var/log/ntpdate.log 2>&1
+    [ $? = 0 ] && echo "OK" || echo "FAIL"
+    /etc/init.d/S49ntp start
+    ;;
+  stop)
+    echo "Stopping $NAME: NA"
+    ;;
+  restart|reload)
+    echo "Restarting $NAME: "
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|reload}" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
