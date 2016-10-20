@@ -1,0 +1,36 @@
+#! /bin/sh
+
+NAME=iperf
+DAEMON=/usr/bin/iperf
+
+err()
+{
+	echo "$1"
+	exit 1
+}
+
+
+
+case "$1" in
+  start)
+    echo -n "Starting $NAME: "
+    $DAEMON -s > /var/log/iperf.log 2>&1 &
+    [ $? = 0 ] && echo "OK" || echo "FAIL"
+    ;;
+  stop)
+    echo "Stopping $NAME: NA"
+    killall iperf
+    ;;
+  restart|reload)
+    echo "Restarting $NAME: "
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|reload}" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
