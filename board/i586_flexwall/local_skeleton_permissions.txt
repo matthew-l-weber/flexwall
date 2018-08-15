@@ -6,6 +6,7 @@
 # dynamic configurations (where devtmpfs, mdev or udev are used).
 #
 # <name>				<type>	<mode>	<uid>	<gid>	<major>	<minor>	<start>	<inc>	<count>
+/init					f	755	0	0	-	-	-	-	-
 /etc/dnsmasq.conf			f	644	0	0	-	-	-	-	-
 /etc/hosts.dnsmasq			f	644	0	0	-	-	-	-	-
 /etc/inittab				f	644	0	0	-	-	-	-	-

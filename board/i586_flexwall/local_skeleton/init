@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Mount filesystems
+#mount -t devtmpfs dev /dev
+mount -t proc proc /proc
+mkdir -p /dev/pts
+mkdir -p /dev/shm
+#mount -t devpts devpts /dev/pts
+mount -a
+hostname -F /etc/hostname
+
+# Run scripts
+/etc/init.d/rcS
+
+# Start shell on the console
+while true; do
+	echo New shell
+	setsid sh -c 'exec sh < /dev/ttyS0 > /dev/ttyS0 2>&1'
+done
+
+#tty1::respawn:/sbin/getty 38400 tty1
+#ttyS0::respawn:/sbin/getty -L  ttyS0 115200 vt100 # GENERIC_SERIAL
+
