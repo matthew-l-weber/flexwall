@@ -1,2 +1,2 @@
-#source "$BR2_EXTERNAL/package/package2/Config.in"
+#source "$BR2_EXTERNAL_FLEXWALL_PATH/package/package2/Config.in"
 

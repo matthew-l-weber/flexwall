@@ -33,7 +33,7 @@ cd ~/<br>
 git clone http://git.buildroot.net/git/buildroot.git              # Retrieve tip of Buildroot<br>
 git clone https://github.com/matthew-l-weber/flexwall.git         # Retreive target custom files<br>
 cd ~/buildroot                                                    # Setup configuration for build<br>
-make BR2_EXTERNAL=~/flexwall O=~/t_flexwall x86_flexwall_defconfig<br>
+make BR2_EXTERNAL_FLEXWALL_PATH=~/flexwall O=~/t_flexwall x86_flexwall_defconfig<br>
 cd ~/t_flexwall                                                   # Do initial build<br>
 make<br>
 
