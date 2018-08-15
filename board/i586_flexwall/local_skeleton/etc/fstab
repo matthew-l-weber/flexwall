@@ -1,9 +1,0 @@
-# <file system>	<mount pt>	<type>		<options>	<dump>	<pass>
-/dev/root	/		squashfs	ro,defaults	0	1
-/dev/sda2	/mnt		vfat		ro,defaults	0	0
-proc		/proc		proc		defaults	0	0
-devpts		/dev/pts	devpts		defaults,gid=5,mode=620,noexec,nosuid	0	0
-tmpfs		/dev/shm	tmpfs		mode=0777,noexec,nosuid,nodev,ro	0	0
-tmpfs		/tmp		tmpfs		mode=1777,noexec,nosuid,nodev	0	0
-tmpfs		/run		tmpfs		mode=0755,noexec,nosuid,nodev	0	0
-sysfs		/sys		sysfs		defaults	0	0
