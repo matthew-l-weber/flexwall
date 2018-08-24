@@ -1,21 +1,61 @@
 #!/bin/sh
 
 # Mount filesystems
-#mount -t devtmpfs dev /dev
+mount -t devtmpfs dev /dev
+mount -t sysfs sysfs /sys
 mount -t proc proc /proc
 mkdir -p /dev/pts
 mkdir -p /dev/shm
-#mount -t devpts devpts /dev/pts
-mount -a
+mount -t devpts devpts /dev/pts -o defaults,gid=5,mode=620,ptmxmode=0666
+mount -t tmpfs tmpfs /dev/shm -o mode=0777
+mount -t tmpfs tmpfs /tmp -o mode=1777,nosuid,nodev,noexec
+
+# Setup scratch tmpfs space for pids and logs
+rm -rf run
+ln -s tmp run
+cd /var
+ln -s ../tmp run
+ln -s ../tmp log
+# Setup /var/lib/misc for dnsmasq.leases
+rm -rf lib
+ln -s ../tmp lib
+mkdir /tmp/misc
+cd /
+
+mount -o remount,ro /
+
 hostname -F /etc/hostname
 
-# Run scripts
-/etc/init.d/rcS
+# Start all init scripts in /etc/init.d
+# executing them in numerical order.
+#
+for i in /etc/init.d/S??* ;do
+
+     # Ignore dangling symlinks (if any).
+     [ ! -f "$i" ] && continue
+
+     case "$i" in
+	*.sh)
+	    # Source shell script for speed.
+	    (
+		trap - INT QUIT TSTP
+		set start
+		. $i
+	    )
+	    ;;
+	*)
+	    # No sh extension, so fork subprocess.
+	    $i start
+	    ;;
+    esac
+done
+
 
 # Start shell on the console
 while true; do
-	echo New shell
+	echo -n "."
 	setsid sh -c 'exec sh < /dev/ttyS0 > /dev/ttyS0 2>&1'
+	sleep 10
 done
 
 #tty1::respawn:/sbin/getty 38400 tty1

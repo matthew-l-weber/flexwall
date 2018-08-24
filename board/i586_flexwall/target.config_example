@@ -1,0 +1,33 @@
+# This file contains as series of string replacements
+# to setup configuration for the target.  SED consumes
+# this file.
+
+##### LAN / WAN IP setup
+# WAN IP/MASK are assumed as always dhcp
+#s/\#hwaddress ether wan/hwaddress ether de:ad:be:ef:ca:ff/
+s/\${LAN_IP}/10.0.0.1/
+s/\${LAN_MASK}/255.255.0.0/
+#s/\#hwaddress ether lan/hwaddress ether de:ad:be:ef:ca:fe/
+
+##### NTP server setup
+s/\${NTP_SERVER}/0.pool.ntp.org/
+
+##### SSH server setup
+s/\${DROPBEAR_ARGS}/-s -a -p 2/
+
+#### IP Tables Rules
+s/# in rule 1/-A INPUT -p tcp -m tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT/
+#s/# in rule 2/-A INPUT -p tcp -m tcp --dport 443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT/
+#s/# in rule 3/-A INPUT -p tcp -m tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT/
+#s/# in rule 4/-A INPUT -p tcp -m tcp --dport 8080 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT/
+
+##### DNSMASQ Setup
+s/\${DNS}/8.8.8.8/
+s/\${DNS_SEC}/8.8.4.4/
+
+##### (Optional) DHCP setup, uncomment and update
+# dhcp-range=DHCP_IP_ADDR_MIN,DHCP_IP_ADDR_MAX,DHCP_AGE
+s/\#dhcp-range=/dhcp-range=10.0.0.100,10.0.254.254,24h/
+
+#dhcp-option=option:router,${DHCP_ROUTER}
+s/\#dhcp-option=/dhcp-option=option:router,10.0.0.1/

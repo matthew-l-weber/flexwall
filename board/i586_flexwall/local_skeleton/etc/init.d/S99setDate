@@ -14,10 +14,10 @@ err()
 case "$1" in
   start)
     echo -n "Starting $NAME: "
-    /etc/init.d/S49ntp stop
-    $DAEMON 0.pool.ntp.org > /var/log/ntpdate.log 2>&1
+#    /etc/init.d/S49ntp stop
+    $DAEMON ${NTP_SERVER} > /var/log/ntpdate.log 2>&1
     [ $? = 0 ] && echo "OK" || echo "FAIL"
-    /etc/init.d/S49ntp start
+#    /etc/init.d/S49ntp start
     ;;
   stop)
     echo "Stopping $NAME: NA"

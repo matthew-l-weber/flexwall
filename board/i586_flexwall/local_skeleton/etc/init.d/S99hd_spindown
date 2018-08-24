@@ -1,0 +1,5 @@
+echo "Spinning down the hard drive..."
+
+# spin down time isn't working, -y puts it immediately into standby
+#/sbin/hdparm -S1 /dev/sda
+/sbin/hdparm -y /dev/sda
