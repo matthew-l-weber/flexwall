@@ -13,7 +13,7 @@ s/\${LAN_MASK}/255.255.0.0/
 s/\${NTP_SERVER}/0.pool.ntp.org/
 
 ##### SSH server setup
-s/\${DROPBEAR_ARGS}/-s -a -p 2/
+s/\${DROPBEAR_ARGS}/-s -a -p 22/
 
 #### IP Tables Rules
 s/# in rule 1/-A INPUT -p tcp -m tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT/
