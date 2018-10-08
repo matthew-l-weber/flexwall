@@ -5,6 +5,7 @@ auto eth0
 iface eth0 inet dhcp
 	ntp yes
 	#hwaddress ether wan
+	udhcpc_opts -t 0 -T 10 -A 20 -S &
 
 
 auto eth1
