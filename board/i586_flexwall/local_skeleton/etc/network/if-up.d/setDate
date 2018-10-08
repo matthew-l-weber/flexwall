@@ -1,0 +1,19 @@
+#! /bin/sh
+
+if [ -z "$IF_NTP" ] ; then
+	exit 0
+fi
+
+NAME=ntpdate
+DAEMON=/usr/bin/ntpdate
+
+WAIT_TIME=0
+while [ $WAIT_TIME -ne 40 ]; do
+        echo "NTP Attempt $WAIT_TIME" > /tmp/ntp.attempts.$IFACE
+	$DAEMON ${NTP_SERVER} > /tmp/ntp.log.$IFACE 2>&1
+        [ $? == 0 ] && exit 0
+        sleep 1
+        WAIT_TIME=$(( WAIT_TIME + 1 ))
+done
+
+exit 0

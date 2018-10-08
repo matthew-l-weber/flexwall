@@ -12,6 +12,7 @@
 /etc/dnsmasq.conf			f	644	0	0	-	-	-	-	-
 /etc/iptables.rules			f	644	0	0	-	-	-	-	-
 /etc/sysctl.conf			f	644	0	0	-	-	-	-	-
+/etc/network/if-up.d/setDate		f	755	0	0	-	-	-	-	-
 /etc/network/interfaces			f	644	0	0	-	-	-	-	-
 /etc/init.d/S00sysctl			f	755	0	0	-	-	-	-	-
 /etc/init.d/S01logging			f	755	0	0	-	-	-	-	-
@@ -19,7 +20,6 @@
 /etc/init.d/S50dropbear			f	755	0	0	-	-	-	-	-
 /etc/init.d/S80dnsmasq			f	755	0	0	-	-	-	-	-
 /etc/init.d/S99iperf			f	755	0	0	-	-	-	-	-
-/etc/init.d/S99setDate			f	755	0	0	-	-	-	-	-
 /etc/init.d/S99hd_spindown		f	755	0	0	-	-	-	-	-
 /root/.ssh				d	644	0	0	-	-	-	-	-
 /root/.ssh/authorized_keys		f	600	0	0	-	-	-	-	-
