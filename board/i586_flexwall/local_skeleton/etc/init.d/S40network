@@ -10,8 +10,21 @@ case "$1" in
   start)
 	printf "Starting network: "
 	iptables-restore /etc/iptables.rules
+
 	/sbin/ifup -a
 	[ $? = 0 ] && echo "OK" || echo "FAIL"
+
+#	CFG=/etc/ifplugd/ifplugd.conf
+#	IFPLUGD=/usr/sbin/ifplugd
+#	. $CFG
+#	echo -n "Starting ifplugd: "
+#	for IF in $INTERFACES ; do
+#		A="`eval echo \$\{ARGS_${IF}\}`"
+#		[ -z "$A" ] && A="$ARGS"
+#		$IFPLUGD -i $IF $A
+#		echo -n " $IF"
+#	done
+
 	;;
   stop)
 	printf "Stopping network: "
